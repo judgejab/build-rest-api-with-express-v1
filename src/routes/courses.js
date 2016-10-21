@@ -7,7 +7,7 @@ var router = express.Router();
 
 // Returns the Course "_id" and "title" properties
 router.get('/courses', function(req, res, next){
-	return [{title: "foo"},{_id: "bar"}];
+	res.send(JSON.stringify([{_id: 1000}, {name: "something"}]))
 });
 
 // Returns all Course properties and related documents for the provided course ID
