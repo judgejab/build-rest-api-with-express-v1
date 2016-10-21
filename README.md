@@ -91,129 +91,130 @@ To complete this project, follow the instructions below. If you get stuck, ask a
 ###16 steps
 
 **Stub out the required REST API routes.**
-Using Express, set up the following routes (listed in the format HTTP VERB Route HTTP Status Code):
-GET /api/courses 200 - Returns the Course "_id" and "title" properties
-GET /api/course/:id 200 - Returns all Course properties and related documents for the provided course ID
-POST /api/courses 201 - Creates a course, sets the Location header, and returns no content
-PUT /api/courses/:id 204 - Updates a course and returns no content
-GET /api/users 200 - Returns the currently authenticated user
-POST /api/users 201 - Creates a user, sets the Location header to "/", and returns no content
-POST /api/courses/:courseId/reviews 201 - Creates a review for the specified course ID, sets the Location header to the related course, and returns no content
-DELETE /api/courses/:courseId/reviews/:id 204 - Deletes the specified review and returns no content
+* Using Express, set up the following routes (listed in the format HTTP VERB Route HTTP Status Code):
+* GET /api/courses 200 - Returns the Course "_id" and "title" properties
+* GET /api/course/:id 200 - Returns all Course properties and related documents for the provided course ID
+* POST /api/courses 201 - Creates a course, sets the Location header, and returns no content
+* PUT /api/courses/:id 204 - Updates a course and returns no content
+* GET /api/users 200 - Returns the currently authenticated user
+* POST /api/users 201 - Creates a user, sets the Location header to "/", and returns no content
+* POST /api/courses/:courseId/reviews 201 - Creates a review for the specified course ID, sets the Location header to the related course, and returns no content
+* DELETE /api/courses/:courseId/reviews/:id 204 - Deletes the specified review and returns no content
 
 **Update the GET /api/courses route to return static data.**
-Return an array of object literals with "_id" and "title" properties
-You should now be able to run the application (using npm start), browse to http://localhost:5000, and see your static data in the AngularJS application's "Courses" screen.
+* Return an array of object literals with "_id" and "title" properties
+* You should now be able to run the application (using npm start), browse to http://localhost:5000, and see your static data in the AngularJS application's "Courses" screen.
 
 **Set up error handlers.**
-Add a global error handler middleware function that writes error information to the response in the JSON format.
-Add a middleware function to catch 404 errors and forward an error to the global error handler.
+* Add a global error handler middleware function that writes error information to the response in the JSON format.
+* Add a middleware function to catch 404 errors and forward an error to the global error handler.
 
 **Set up a database connection.**
-Use npm to install Mongoose.
-Using Mongoose, create a connection to your MongoDB database.
-Write a message to the console if there's an error connecting to the database.
-Write a message to the console once the connection has been successfully opened.
-Create your Mongoose schema and models.
-The AngularJS application has been created to expect the following schema, so it's important that your database schema match what is listed below.
-Course
-_id (ObjectId, auto-generated)
-user (_id from the users collection)
-title (String)
-description (String)
-estimatedTime (String)
-materialsNeeded (String)
-steps (Array of objects that include stepNumber (Number), title (String) and description (String) properties)
-reviews (Array of ObjectId values, _id values from the reviews collection)
-Review
-_id (ObjectId, auto-generated)
-user (_id from the users collection)
-postedOn (Date)
-rating (Number)
-review (String)
-User
-_id (ObjectId, auto-generated)
-fullName (String)
-emailAddress (String)
-hashedPassword (String)
+* Use npm to install Mongoose.
+* Using Mongoose, create a connection to your MongoDB database.
+* Write a message to the console if there's an error connecting to the database.
+* Write a message to the console once the connection has been successfully opened.
+
+**Create your Mongoose schema and models.**
+* The AngularJS application has been created to expect the following schema, so it's important that your database schema match what is listed below.
+* Course
+* _id (ObjectId, auto-generated)
+* user (_id from the users collection)
+* title (String)
+* description (String)
+* estimatedTime (String)
+* materialsNeeded (String)
+* steps (Array of objects that include stepNumber (Number), title (String) and description (String) properties)
+*reviews (Array of ObjectId values, _id values from the reviews collection)
+* Review
+* _id (ObjectId, auto-generated)
+* user (_id from the users collection)
+* postedOn (Date)
+* rating (Number)
+* review (String)
+* User
+* _id (ObjectId, auto-generated)
+* fullName (String)
+* emailAddress (String)
+* hashedPassword (String)
 
 **Seed your database with data.**
-We've provided you with seed data in JSON format (see the src/data/data.json file) to work with the mongoose-seeder npm package.
-See https://github.com/SamVerschueren/mongoose-seeder for documentation on how to use mongoose-seeder.
-Important: mongoose-seeder requires an open connection to the database to be available, so ensure to not call your database seed code until Mongoose has successfully opened a connection to the database.
-Alternatively, you could use the MongoDB shell to insert data into your database.
-See https://docs.mongodb.org/getting-started/shell/client/ for documentation on the MongoDB shell.
+* We've provided you with seed data in JSON format (see the src/data/data.json file) to work with the mongoose-seeder npm package.
+* See https://github.com/SamVerschueren/mongoose-seeder for documentation on how to use mongoose-seeder.
+* Important: mongoose-seeder requires an open connection to the database to be available, so ensure to not call your database seed code until Mongoose has successfully opened a connection to the database.
+* Alternatively, you could use the MongoDB shell to insert data into your database.
+* See https://docs.mongodb.org/getting-started/shell/client/ for documentation on the MongoDB shell.
 
 **Update the Course schema with an overallRating virtual property.**
-overallRating is a calculated, read only property that returns the average of all of the review ratings for this course rounded to the nearest whole number.
-By not storing this calculated value in the database, we ensure that it's impossible for the value to get out of sync with the course's reviews.
+* overallRating is a calculated, read only property that returns the average of all of the review ratings for this course rounded to the nearest whole number.
+* By not storing this calculated value in the database, we ensure that it's impossible for the value to get out of sync with the course's reviews.
 
 **Update the GET api/courses and GET /api/courses/:id routes to return data from the database.**
-When returning a single course for the GET /api/courses/:id route, use Mongoose population to load the related user and reviews documents.
-You should now be able to see data from your database in the AngularJS application's "Courses" and "Course Detail" screens.
+* When returning a single course for the GET /api/courses/:id route, use Mongoose population to load the related user and reviews documents.
+* You should now be able to see data from your database in the AngularJS application's "Courses" and "Course Detail" screens.
 
 **Update the User model to store the user's password as a hashed value.**
-The AngularJS application will send you password and confirmPassword values in the request body when calling the POST /api/users route.
-For security reasons, we don't want to store either of those values in the database as clear text.
-Use the bcrypt npm package to hash the user's password.
-See https://github.com/ncb000gt/node.bcrypt.js/ for more information.
+* The AngularJS application will send you password and confirmPassword values in the request body when calling the POST /api/users route.
+* For security reasons, we don't want to store either of those values in the database as clear text.
+* Use the bcrypt npm package to hash the user's password.
+* See https://github.com/ncb000gt/node.bcrypt.js/ for more information.
 
 **Add validation to your Mongoose schema.**
-Mongoose validation gives you a rich set of tools to validate user data. See http://mongoosejs.com/docs/validation.html for more information.
-Your validation should satisfy the following requirements:
-Course
-Must have a title value
-Must have a description value
-Must have at least one step
-For each step...
-Must have a title value
-Must have a description value
-Review
-Must have a rating value
-The rating value must fall between “1” and “5” (inclusive) and is rounded to the nearest whole number
-User
-Must have a fullName value
-Must have an emailAddress value
-Must have a password value
-Must have a confirmPassword value
-The password and confirmPassword values must match
-The provided emailAddress is in the correct format
-The provided emailAddress must not be associated with an existing user
+* Mongoose validation gives you a rich set of tools to validate user data. See http://mongoosejs.com/docs/validation.html for more information.
+* Your validation should satisfy the following requirements:
+* Course
+* Must have a title value
+* Must have a description value
+* Must have at least one step
+* For each step...
+* Must have a title value
+* Must have a description value
+* Review
+* Must have a rating value
+* The rating value must fall between “1” and “5” (inclusive) and is rounded to the nearest whole number
+* User
+* Must have a fullName value
+* Must have an emailAddress value
+* Must have a password value
+* Must have a confirmPassword value
+* The password and confirmPassword values must match
+* The provided emailAddress is in the correct format
+* The provided emailAddress must not be associated with an existing user
 
 **Update the POST and PUT routes to return Mongoose validation errors.**
-The response should use the 400 status code.
-In order for the AngularJS application to be able to display your validation errors, convert the Mongoose validation errors into the following JSON data structure: { "message": "Validation Failed", "errors": { "property": [ { "code": "", "message": "" }, ... ] } }
+* The response should use the 400 status code.
+* In order for the AngularJS application to be able to display your validation errors, convert the Mongoose validation errors into the following JSON data structure: { "message": "Validation Failed", "errors": { "property": [ { "code": "", "message": "" }, ... ] } }
 
 **Set up basic authentication.**
-The AngularJS application will send an Authorization header with each request when a user is signed in.
-You can use the basic-auth npm package to parse the `Authorization' header into the user's credentials.
-Add a middleware function that attempts to get the user credentials from the request.
-If credentials are available, then attempt to get the user from the database by their email address.
-If a user was found for the provided email address, then check the user's password.
-Remember: The user's password is stored as a hashed value, so you'll need to hash the password from the user's credentials before you compare the two values. The bcrypt npm package provides a helper function that makes that process easy to do.
-If they match, then set the user's information on the request so that each following middleware function has access to it.
-If they don't match, then don't set the user information on the request.
-Update all routes that require authentication to check for the current user and return a 401 HTTP status code if not available.
-The following routes should require authentication:
-POST /api/courses
-PUT /api/courses/:id
-GET /api/users
-POST /api/courses/:courseId/reviews
-DELETE /api/courses/:courseId/reviews/:id
+* The AngularJS application will send an Authorization header with each request when a user is signed in.
+* You can use the basic-auth npm package to parse the `Authorization' header into the user's credentials.
+* Add a middleware function that attempts to get the user credentials from the request.
+* If credentials are available, then attempt to get the user from the database by their email address.
+* If a user was found for the provided email address, then check the user's password.
+* Remember: The user's password is stored as a hashed value, so you'll need to hash the password from the user's credentials before you compare the two values. The bcrypt npm package provides a helper function that makes that process easy to do.
+* If they match, then set the user's information on the request so that each following middleware function has access to it.
+* If they don't match, then don't set the user information on the request.
+* Update all routes that require authentication to check for the current user and return a 401 HTTP status code if not available.
+* The following routes should require authentication:
+* POST /api/courses
+* PUT /api/courses/:id
+* GET /api/users
+* POST /api/courses/:courseId/reviews
+* DELETE /api/courses/:courseId/reviews/:id
 
 **Update the GET /api/users and POST /api/users routes to use the database.**
-Parse the JSON body to a JavaScript object.
-You should now be able to use the AngularJS application's "Sign In" and "Sign Up" screens to login and register users.
+* Parse the JSON body to a JavaScript object.
+* You should now be able to use the AngularJS application's "Sign In" and "Sign Up" screens to login and register users.
 
 **Update the POST /api/courses and PUT /api/courses/:id routes to use the database.**
-When creating or updating a course set the step numbers to be equal to their index in the course steps array plus one.
-You should now be able to use the AngularJS application's "Add Course" and "Edit Course" screens to add and edit courses.
+* When creating or updating a course set the step numbers to be equal to their index in the course steps array plus one.
+* You should now be able to use the AngularJS application's "Add Course" and "Edit Course" screens to add and edit courses.
 
 **Update the POST /api/courses/:courseId/reviews and DELETE /api/courses/:courseId/reviews/:id routes to use the database.**
-Default the review postedOn value to "now" (i.e. Date.now()) when creating reviews.
-You should now be able to use the AngularJS application's "Course Detail" screen to post and delete reviews.
+* Default the review postedOn value to "now" (i.e. Date.now()) when creating reviews.
+* You should now be able to use the AngularJS application's "Course Detail" screen to post and delete reviews.
 
 **Add the following permissions.**
-Don't allow anything other than the current user's information to be returned from the GET /api/users route.
-Don't allow anyone other than the current user to add/edit courses.
-Don't allow anyone to delete a review other than the review's user and the course owner.
+* Don't allow anything other than the current user's information to be returned from the GET /api/users route.
+* Don't allow anyone other than the current user to add/edit courses.
+* Don't allow anyone to delete a review other than the review's user and the course owner.
