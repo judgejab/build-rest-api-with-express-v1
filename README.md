@@ -22,11 +22,12 @@ DELETE - Deletes a review
 POST - Creates a user
 /api/users/
 GET - Returns the current user
-Before you start
+
+##Before you start
 
 To prepare for this project you'll need to make sure you complete and understand these steps.
 
- 9 steps
+9 steps
 Have a GitHub account and know how to create a new repository and upload files to it. As with the previous projects, you'll submit your finished working using GitHub.
 If you need a reminder on how to use GitHub and GitHub desktop to create a new repository check out the workshop 'Share Your Projects wIth GitHub Desktop' in the Project Resources.
 Download the project files. We've supplied the following files for you to use:
@@ -75,11 +76,12 @@ Select the CourseAPI.json.postman_collection file.
 You should now see the Course API collection in the left hand pane of the main Postman window.
 Click on one of the available requests to load it into a tab. Click on the Request button to issue the request to the local server.
 Be sure that your REST API is currently running (see the previous project step for details).
-Project Instructions
+
+##Project Instructions
 
 To complete this project, follow the instructions below. If you get stuck, ask a question in the community.
 
- 16 steps
+16 steps
 Stub out the required REST API routes.
 Using Express, set up the following routes (listed in the format HTTP VERB Route HTTP Status Code):
 GET /api/courses 200 - Returns the Course "_id" and "title" properties
