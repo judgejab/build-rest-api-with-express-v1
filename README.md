@@ -27,7 +27,7 @@ GET - Returns the current user
 
 To prepare for this project you'll need to make sure you complete and understand these steps.
 
-**9 steps**
+###9 steps
 
 **Have a GitHub account and know how to create a new repository and upload files to it. As with the previous projects, you'll submit your finished working using GitHub.**
 
