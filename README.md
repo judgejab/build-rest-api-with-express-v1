@@ -27,55 +27,62 @@ GET - Returns the current user
 
 To prepare for this project you'll need to make sure you complete and understand these steps.
 
-9 steps
-Have a GitHub account and know how to create a new repository and upload files to it. As with the previous projects, you'll submit your finished working using GitHub.
-If you need a reminder on how to use GitHub and GitHub desktop to create a new repository check out the workshop 'Share Your Projects wIth GitHub Desktop' in the Project Resources.
-Download the project files. We've supplied the following files for you to use:
-The app folder contains all of the JavaScript source code for the provided AngularJS application. You won’t be making any changes to any of the files in this folder, but you’re welcome to (optionally) explore the code to see how the AngularJS application functions. We're using webpack to bundle these JavaScript files into a single JavaScript file that is copied to the public/scripts folder (see the app.bundle.js file).
-The public folder contains the static files (HTML, CSS) and webpack bundled JavaScript files for the AngularJS application.
-The index.html file is the one and only HTML page in the application (this is a single page application after all!) It also contains a script tag containing the JavaScript where you can switch between using the in-browser mock data and your REST API.
-The src folder is where you'll be building your Node.js REST API. We’ve provided some files to get you started.
-The data/data.json file contains seed data for your database that can be used in conjunction with the mongoose-seeder npm package.
-The index.js file configures Express to serve the static files in the public folder. We've also configured the morgan npm package to log HTTP requests/responses to the console.
-We’ve included a .gitignore file to ensure that the node_modules folder doesn't get pushed to your GitHub repo.
-The CourseAPI.json.postman_collection file is a collection of Postman requests that you can use to test and explore your REST API.
-The nodemon.js file configures the nodemon Node.js module, which we are using to run your REST API.
-The package.json file is the project’s npm configuration, which includes the project’s dependencies.
-The webpack.config.js file is the project's webpack configuration.
-Ensure that you have Node.js installed.
-Open a Command Prompt (on Windows) or Terminal (on Mac OS X) instance and run the command node -v and npm -v.
-If either of those commands failed (i.e. did not return a version number) then you’ll need to install Node.js and/or NPM.
-How to Install Node.js and NPM on Windows
-How to Install Node.js and NPM on a Mac
-How to Install Node.js and NPM on Linux
-Ensure that you have MongoDB installed.
-Open a Command Prompt (on Windows) or Terminal (on Mac OS X) instance and run the command mongod (or sudo mongod) to start the MongoDB daemon.
-If that command failed then you’ll need to install MongoDB.
-How to Install MongoDB on Windows
-How to Install MongoDB on a Mac
-We’ve provided you with a basic project to get started. When developing your REST API, just add your code to the src folder. To test your REST API, you’ll need to run the provided Node.js Express application locally on your PC.
-Open a Command Prompt (on Windows) or Terminal (on Mac OS X and Linux) instance and browse to the root project folder.
-Run the command npm install to install the required dependencies.
-Run the command npm start to run the Node.js Express application using nodemon. Using nodemon gives you the ability to leave your application running while you edit your application’s code (nodemon will restart your Node.js application when it detects that you’ve made changes to your code).
-Open your web browser and browse to http://localhost:5000. You should see the provided AngularJS client side application.
-You can press Ctrl-C to stop the Node.js REST API.
-When you’re ready, you can configure the provided AngularJS client side application to use your REST API instead of the in-browser mock data.
-Open the public/index.html HTML file into the editor of your choice.
-Change the constants.useMockData property value to false.
-Run the application (by using the npm start command) and browse to http://localhost:5000. If you already had the application loaded into your browser, be sure to refresh the page.
-The “mock data” alert at the top of the page should no longer be visible, indicating that the AngularJS application is now using your REST API.
-As you build out your REST API, you’ll naturally encounter errors and unexpected behavior. Here are some reminders and suggestions on how to debug your REST API.
-If Node.js crashed as a result of the error, you can look in the Command Prompt (on Windows) or Terminal (on Mac OS X and Linux) window and see the exception information.
-Sometimes errors don’t result in exceptions, but instead are returned as 400 or 500 HTTP status codes. Errors returned from your REST API will be logged to your browser’s console, so you can open your browser’s web developer tools and look at the error information in the console.
-For a deeper, more detailed analysis of the state of your application, you can use tools like ironNode to debug your Node.js application. See http://s-a.github.io/iron-node/ for more information.
-Postman is a great Chrome App that you can use to explore and test REST APIs. To help you jumpstart the exploration process, we’ve provided you with a collection of Postman requests as part of the project files. Here’s how to load the provided collection into Postman:
-If you haven’t already, install Postman. Links and instructions are available on their website at https://www.getpostman.com/.
-Once you have Postman installed and open, click on the “Import” button in the top left hand corner of the application’s window.
-In the opened dialog, click the “Choose Files” button and browse to the folder that contains your project files.
-Select the CourseAPI.json.postman_collection file.
-You should now see the Course API collection in the left hand pane of the main Postman window.
-Click on one of the available requests to load it into a tab. Click on the Request button to issue the request to the local server.
-Be sure that your REST API is currently running (see the previous project step for details).
+**9 steps**
+
+**Have a GitHub account and know how to create a new repository and upload files to it. As with the previous projects, you'll submit your finished working using GitHub.**
+
+**If you need a reminder on how to use GitHub and GitHub desktop to create a new repository check out the workshop 'Share Your Projects wIth GitHub Desktop' in the Project Resources.**
+
+**Download the project files. We've supplied the following files for you to use:**
+* The app folder contains all of the JavaScript source code for the provided AngularJS application. You won’t be making any changes to any of the files in this folder, but you’re welcome to (optionally) explore the code to see how the AngularJS application functions. We're using webpack to bundle these JavaScript files into a single JavaScript file that is copied to the public/scripts folder (see the app.bundle.js file).
+* The public folder contains the static files (HTML, CSS) and webpack bundled JavaScript files for the AngularJS application.
+* The index.html file is the one and only HTML page in the application (this is a single page application after all!) It also contains a script tag containing the JavaScript where you can switch between using the in-browser mock data and your REST API.
+
+* The src folder is where you'll be building your Node.js REST API. We’ve provided some files to get you started.
+* The data/data.json file contains seed data for your database that can be used in conjunction with the mongoose-seeder npm package.
+* The index.js file configures Express to serve the static files in the public folder. We've also configured the morgan npm package to log HTTP requests/responses to the console.
+
+* We’ve included a .gitignore file to ensure that the node_modules folder doesn't get pushed to your GitHub repo.
+* The CourseAPI.json.postman_collection file is a collection of Postman requests that you can use to test and explore your REST API.
+* The nodemon.js file configures the nodemon Node.js module, which we are using to run your REST API.
+* The package.json file is the project’s npm configuration, which includes the project’s dependencies.
+* The webpack.config.js file is the project's webpack configuration.
+
+**Ensure that you have Node.js installed.**
+* Open a Command Prompt (on Windows) or Terminal (on Mac OS X) instance and run the command node -v and npm -v.
+* If either of those commands failed (i.e. did not return a version number) then you’ll need to install Node.js and/or NPM.
+
+**Ensure that you have MongoDB installed.**
+* Open a Command Prompt (on Windows) or Terminal (on Mac OS X) instance and run the command mongod (or sudo mongod) to start the MongoDB daemon.
+* If that command failed then you’ll need to install MongoDB.
+
+
+**We’ve provided you with a basic project to get started. When developing your REST API, just add your code to the src folder. To test your REST API, you’ll need to run the provided Node.js Express application locally on your PC.**
+* Open a Command Prompt (on Windows) or Terminal (on Mac OS X and Linux) instance and browse to the root project folder.
+* Run the command npm install to install the required dependencies.
+* Run the command npm start to run the Node.js Express application using nodemon. Using nodemon gives you the ability to leave your application running while you edit your application’s code (nodemon will restart your Node.js application when it detects that you’ve made changes to your code).
+* Open your web browser and browse to http://localhost:5000. You should see the provided AngularJS client side application.
+* You can press Ctrl-C to stop the Node.js REST API.
+
+**When you’re ready, you can configure the provided AngularJS client side application to use your REST API instead of the in-browser mock data.**
+* Open the public/index.html HTML file into the editor of your choice.
+* Change the constants.useMockData property value to false.
+* Run the application (by using the npm start command) and browse to http://localhost:5000. If you already had the application loaded into your browser, be sure to refresh the page.
+* The “mock data” alert at the top of the page should no longer be visible, indicating that the AngularJS application is now using your REST API.
+
+**As you build out your REST API, you’ll naturally encounter errors and unexpected behavior. Here are some reminders and suggestions on how to debug your REST API.**
+* If Node.js crashed as a result of the error, you can look in the Command Prompt (on Windows) or Terminal (on Mac OS X and Linux) window and see the exception information.
+* Sometimes errors don’t result in exceptions, but instead are returned as 400 or 500 HTTP status codes. Errors returned from your REST API will be logged to your browser’s console, so you can open your browser’s web developer tools and look at the error information in the console.
+* For a deeper, more detailed analysis of the state of your application, you can use tools like ironNode to debug your Node.js application. See http://s-a.github.io/iron-node/ for more information.
+
+**Postman is a great Chrome App that you can use to explore and test REST APIs. To help you jumpstart the exploration process, we’ve provided you with a collection of Postman requests as part of the project files. Here’s how to load the provided collection into Postman:**
+* If you haven’t already, install Postman. Links and instructions are available on their website at https://www.getpostman.com/.
+* Once you have Postman installed and open, click on the “Import” button in the top left hand corner of the application’s window.
+* In the opened dialog, click the “Choose Files” button and browse to the folder that contains your project files.
+* Select the CourseAPI.json.postman_collection file.
+* You should now see the Course API collection in the left hand pane of the main Postman window.
+* Click on one of the available requests to load it into a tab. Click on the Request button to issue the request to the local server.
+* Be sure that your REST API is currently running (see the previous project step for details).
 
 ##Project Instructions
 
