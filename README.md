@@ -8,20 +8,20 @@ In addition to common developer tools like Postman, we’ve provided you with an
 
 Your REST API will include two main resources, “courses” and “users”, containing the following routes:
 
-*/api/courses
+- /api/courses
 GET - Returns a list of courses
-*POST - Creates a course
-/api/courses/:id
-*GET - Returns a single course
-*PUT - Updates a course
-/api/courses/:courseId/reviews
-*POST - Creates a review for the specified course
-/api/courses/:courseId/reviews/:id
-*DELETE - Deletes a review
-/api/users
-*POST - Creates a user
-/api/users/
-*GET - Returns the current user
+POST - Creates a course
+- /api/courses/:id
+GET - Returns a single course
+PUT - Updates a course
+- /api/courses/:courseId/reviews
+POST - Creates a review for the specified course
+- /api/courses/:courseId/reviews/:id
+DELETE - Deletes a review
+- /api/users
+POST - Creates a user
+- /api/users/
+GET - Returns the current user
 
 ##Before you start
 
