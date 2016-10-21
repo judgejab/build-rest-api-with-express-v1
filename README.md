@@ -32,7 +32,7 @@ If you need a reminder on how to use GitHub and GitHub desktop to create a new r
 Download the project files. We've supplied the following files for you to use:
 The app folder contains all of the JavaScript source code for the provided AngularJS application. You won’t be making any changes to any of the files in this folder, but you’re welcome to (optionally) explore the code to see how the AngularJS application functions. We're using webpack to bundle these JavaScript files into a single JavaScript file that is copied to the public/scripts folder (see the app.bundle.js file).
 The public folder contains the static files (HTML, CSS) and webpack bundled JavaScript files for the AngularJS application.
-The index.html file is the one and only HTML page in the application (this is a single page application after all!) It also contains a <script> tag containing the JavaScript where you can switch between using the in-browser mock data and your REST API.
+The index.html file is the one and only HTML page in the application (this is a single page application after all!) It also contains a script tag containing the JavaScript where you can switch between using the in-browser mock data and your REST API.
 The src folder is where you'll be building your Node.js REST API. We’ve provided some files to get you started.
 The data/data.json file contains seed data for your database that can be used in conjunction with the mongoose-seeder npm package.
 The index.js file configures Express to serve the static files in the public folder. We've also configured the morgan npm package to log HTTP requests/responses to the console.
