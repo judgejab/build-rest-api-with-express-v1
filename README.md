@@ -109,7 +109,7 @@ To complete this project, follow the instructions below. If you get stuck, ask a
 
 **Create your Mongoose schema and models.**
 * The AngularJS application has been created to expect the following schema, so it's important that your database schema match what is listed below.
-* *Course*
+* **Course**
 * _id (ObjectId, auto-generated)
 * user (_id from the users collection)
 * title (String)
@@ -118,13 +118,13 @@ To complete this project, follow the instructions below. If you get stuck, ask a
 * materialsNeeded (String)
 * steps (Array of objects that include stepNumber (Number), title (String) and description (String) properties)
 *reviews (Array of ObjectId values, _id values from the reviews collection)
-* *Review*
+* **Review**
 * _id (ObjectId, auto-generated)
 * user (_id from the users collection)
 * postedOn (Date)
 * rating (Number)
 * review (String)
-* *User*
+* **User**
 * _id (ObjectId, auto-generated)
 * fullName (String)
 * emailAddress (String)
