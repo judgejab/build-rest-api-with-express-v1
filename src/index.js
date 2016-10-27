@@ -1,50 +1,56 @@
+
 'use strict';
-
-// load modules
+// require express
 var express = require('express');
+// require morgan for logging
 var logger = require('morgan');
-var bodyParser = require('body-parser');
-
+// require json parser
+var jsonParser = require('body-parser').json;
+// require mongoose models
+require('./models/courses');
+require('./models/reviews');
+require('./models/users');
+// require DB
+require('./database');
+// define app as express instance
 var app = express();
+// require routes
+var routes = require('./routes');
 
-// set our port
+// set port to 5000
 app.set('port', process.env.PORT || 5000);
 
-// morgan gives us http request logging
+// logger for http logging
 app.use(logger('dev'));
+// used to parse json
+app.use(jsonParser());
 
-// parse incoming requests
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
-
-
-// include routes
-var routes = require('./routes');
-// setup our static route to serve files from the "public" folder
+// serve static files from public folder
 app.use('/', express.static('public'));
+app.use('/api', routes.course);
+app.use('/api', routes.review);
+app.use('/api', routes.user);
 
-app.use('/api', routes.courses);
-app.use('/api', routes.reviews);
-app.use('/api', routes.users);
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next){
-	var err = new Error('File Not Found');
-	err.status = 404;
-	next(err);
+// Sets up error handlers.
+// Add a middleware function to catch 404 errors and forward an error to the global error handler.
+// catch 404 & forward to error handler
+app.use(function (req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
-// error handler
-// define as the last app.use callback
-app.use(function(err, req, res, next){
-	res.status(err.status || 500);
-	res.render('error', {
-		message: err.message,
-		error: {}
-	});
+// Adds a global error handler middleware function that writes error information to the response in the JSON format.
+app.use(function (err, req, res, next) {
+  res.status(err.status || 500);
+  res.json({
+    error: {
+      message: err.message
+    }
+  });
 });
 
 // start listening on our port
-var server = app.listen(app.get('port'), function() {
-  console.log('Express server is listening on port ' + server.address().port);  
+var server = app.listen(app.get('port'), function () {
+  console.log("Let's roll out on port " + server.address().port);
 });

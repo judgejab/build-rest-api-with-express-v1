@@ -1,5 +1,6 @@
 'use strict';
 
-exports.courses = require('./courses.js');
-exports.reviews = require('./reviews.js');
-exports.users = require('./users.js');
+// requires the files and attaches them to the folder object 
+exports.course = require('./courses.js');
+exports.review = require('./reviews.js');
+exports.user = require('./users.js');
